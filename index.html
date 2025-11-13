@@ -1,0 +1,261 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Latihan: Simple Website</title>
+
+  <!-- Simple styles (responsive, modern-ish) -->
+  <style>
+    :root{
+      --bg: #f7fafc;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --accent-2: #06b6d4;
+      --radius: 10px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing: border-box}
+    body{
+      margin:0;
+      background: linear-gradient(180deg,#f8fafc 0%, #eef2ff 100%);
+      color:#111827;
+      line-height:1.5;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    header{
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(6px);
+      position: sticky;
+      top:0;
+      z-index: 40;
+      border-bottom: 1px solid rgba(15,23,42,0.06);
+    }
+    .container{
+      width: min(1100px, 94%);
+      margin: 0 auto;
+      padding: 1rem 0;
+    }
+    nav{
+      display:flex;
+      align-items:center;
+      gap:1rem;
+      justify-content:space-between;
+    }
+    .brand{display:flex;align-items:center;gap:.6rem;font-weight:700}
+    .brand .logo{
+      width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:inline-grid;place-items:center;color:white;font-weight:700;
+    }
+    .nav-links{display:flex;gap:1rem;align-items:center}
+    .nav-links a{color:var(--muted);text-decoration:none;padding:.4rem .6rem;border-radius:6px}
+    .nav-links a:hover{background:rgba(37,99,235,0.06);color:var(--accent)}
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:1.2rem;
+      align-items:center;
+      padding:2.4rem 0;
+    }
+    .card{
+      background:var(--card);
+      border-radius: var(--radius);
+      padding:1.2rem;
+      box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+    }
+
+    .hero-grid{
+      display:grid;
+      gap:1rem;
+      grid-template-columns: 1fr 360px;
+    }
+    h1{margin:0;font-size:1.6rem}
+    p.lead{color:var(--muted);margin:.6rem 0 0}
+    .cta{display:inline-block;margin-top:1rem;padding:.6rem 1rem;background:var(--accent);color:white;border-radius:8px;text-decoration:none}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1rem}
+    .feature{padding:.8rem;border-radius:8px;background:linear-gradient(180deg,rgba(6,182,212,0.05),transparent)}
+
+    form.field{display:flex;flex-direction:column;gap:.6rem}
+    input[type="text"], input[type="email"], textarea{
+      padding:.6rem .8rem;border-radius:8px;border:1px solid #e6e9ef;font-size:.95rem;
+    }
+    button[type="submit"]{background:var(--accent);color:white;padding:.6rem 1rem;border:none;border-radius:8px;cursor:pointer}
+    button[type="submit"]:hover{opacity:.95}
+
+    footer{padding:2rem 0;margin-top:2rem}
+    .muted{color:var(--muted);font-size:.92rem}
+
+    /* responsive */
+    @media (max-width:860px){
+      .hero-grid{grid-template-columns: 1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <div class="logo">A</div>
+          <div>
+            <div>LatihanWeb</div>
+            <div style="font-size:.82rem;color:var(--muted)">demo sederhana</div>
+          </div>
+        </div>
+
+        <div class="nav-links" id="navLinks">
+          <a href="#home">Home</a>
+          <a href="#features">Features</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container hero" id="home">
+      <div class="hero-grid">
+        <div>
+          <div class="card">
+            <h1>Belajar Web: HTML • CSS • JS</h1>
+            <p class="lead">Website minimal ini dibuat untuk latihan: struktur halaman, form input, interaksi JS, dan responsive layout.</p>
+            <a class="cta" href="#contact" id="ctaTry">Coba Fitur</a>
+
+            <div class="features" id="features" style="margin-top:1rem">
+              <div class="feature">
+                <strong>Navbar</strong>
+                <div class="muted">Link navigasi, responsive</div>
+              </div>
+              <div class="feature">
+                <strong>Form</strong>
+                <div class="muted">Masukkan data dan lihat hasil via JS</div>
+              </div>
+              <div class="feature">
+                <strong>Interactive</strong>
+                <div class="muted">Simple DOM manipulation & event handling</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="height:12px"></div>
+
+          <div class="card">
+            <h3>Catatan</h3>
+            <p class="muted">Gunakan ini untuk bereksperimen: tambahkan CSS, ubah struktur HTML, atau sambungkan ke server sederhana.</p>
+          </div>
+        </div>
+
+        <aside>
+          <div class="card">
+            <h3>Kontak & Demo</h3>
+            <p class="muted">Isi form di bawah untuk melihat preview data yang dikirim (simulasi).</p>
+
+            <form id="demoForm" class="field" onsubmit="return false;">
+              <label for="name">Nama</label>
+              <input id="name" type="text" placeholder="Nama kamu" required>
+
+              <label for="email">Email</label>
+              <input id="email" type="email" placeholder="nama@contoh.com" required>
+
+              <label for="message">Pesan</label>
+              <textarea id="message" rows="4" placeholder="Tulis sesuatu..."></textarea>
+
+              <div style="display:flex;gap:.6rem;margin-top:.6rem">
+                <button id="submitBtn" type="submit">Kirim</button>
+                <button id="clearBtn" type="button">Bersihkan</button>
+              </div>
+
+              <div id="result" style="margin-top:.8rem"></div>
+            </form>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="container" id="more" style="padding-top:1.2rem">
+      <div class="card">
+        <h3>Contoh kode</h3>
+        <pre style="white-space:pre-wrap;background:#0f172a;color:#e6eef8;padding:12px;border-radius:8px;overflow:auto">
+&lt;h1&gt;Halo Dunia&lt;/h1&gt;
+&lt;p&gt;Ini contoh snippet&lt;/p&gt;
+        </pre>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
+        <div>
+          <strong>LatihanWeb</strong>
+          <div class="muted">Belajar & eksperimen web</div>
+        </div>
+        <div class="muted">© <span id="year"></span> — dibuat untuk latihan</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Simple JS for interactivity -->
+  <script>
+    // set year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // form logic: show a simple preview
+    const form = document.getElementById('demoForm');
+    const result = document.getElementById('result');
+    const submitBtn = document.getElementById('submitBtn');
+    const clearBtn = document.getElementById('clearBtn');
+
+    function validateEmail(email){
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    submitBtn.addEventListener('click', () => {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if(!name || !email){
+        result.innerHTML = '<div style="color:#b91c1c">Nama dan email wajib diisi.</div>';
+        return;
+      }
+      if(!validateEmail(email)){
+        result.innerHTML = '<div style="color:#b91c1c">Format email tidak valid.</div>';
+        return;
+      }
+
+      // show preview card
+      result.innerHTML = `
+        <div style="padding:.8rem;border-radius:8px;background:#f1f5f9">
+          <strong>Preview:</strong>
+          <div style="margin-top:.4rem"><strong>Nama:</strong> ${escapeHtml(name)}</div>
+          <div><strong>Email:</strong> ${escapeHtml(email)}</div>
+          <div><strong>Pesan:</strong> ${escapeHtml(message || '(kosong)')}</div>
+        </div>
+      `;
+    });
+
+    clearBtn.addEventListener('click', () => {
+      form.reset();
+      result.innerHTML = '';
+    });
+
+    // small helper to escape HTML (prevent injection in preview)
+    function escapeHtml(s){
+      return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
+    }
+
+    // smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth', block:'start'}); }
+      });
+    });
+  </script>
+</body>
+</html>
